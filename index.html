@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -228,13 +229,54 @@ function chooseTool(type){
  };
 
  document.getElementById("toolTitle").innerText=names[type];
- document.getElementById("creator").scrollIntoView({behavior:"smooth"});
-}
-
-function generateContent(){
+ document.getElementById("creator").scrollIntoView({behavior:"
 
  const text=document.getElementById("request").value.trim();
- const output=document.getElementById("output");
+ const output=document.getElementById("output");function generateContent(){async function generateContent() {
+  const text = document.getElementById("request").value.trim();
+  const output = document.getElementById("output");
+
+  if (!text) {
+    output.innerText = "Please tell BeautyBoss what you need.";
+    return;
+  }
+
+  output.innerText = "✨ BeautyBoss AI is creating your result...";
+
+  const instructions = {
+    caption: "Write a professional, engaging social media caption for this beauty business request:",
+    promo: "Create an attractive beauty business promotion for this request:",
+    reply: "Write a professional and friendly reply to this beauty client message:",
+    price: "Give helpful beauty service pricing guidance for this request:"
+  };
+
+  const prompt =
+    (instructions[tool] || "Help with this beauty business request:") +
+    "\n\n" +
+    text;
+
+  try {
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ prompt: prompt })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Request failed");
+    }
+
+    output.innerText = data.result;
+
+  } catch (error) {
+    output.innerText =
+      "BeautyBoss AI could not generate a response. Please try again.";
+  }
+}
 
  if(!text){
    output.innerHTML="Please tell BeautyBoss what you need first. 💕";
