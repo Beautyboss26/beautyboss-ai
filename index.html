@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeautyBoss AI</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#fff7fb;
+  color:#241d23;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:24px;
+}
+.logo{
+  font-size:30px;
+  font-weight:800;
+}
+.logo span{color:#d94b8e}
+.tag{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 16px;
+  border-radius:30px;
+  background:#ffe7f2;
+  color:#96345f;
+  font-weight:bold;
+}
+.hero{
+  margin-top:28px;
+  padding:38px 28px;
+  border-radius:35px;
+  color:white;
+  background:linear-gradient(135deg,#43152f,#c34786);
+}
+.hero h1{
+  font-size:42px;
+  margin:0 0 15px;
+}
+.hero p{
+  font-size:20px;
+  line-height:1.5;
+}
+.hero button{
+  width:100%;
+  padding:18px;
+  border:0;
+  border-radius:25px;
+  background:white;
+  color:#7d2c55;
+  font-size:18px;
+  font-weight:bold;
+}
+h2{margin-top:38px}
+.tools{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.card{
+  background:white;
+  padding:22px;
+  border:2px solid #f3d8e5;
+  border-radius:25px;
+  cursor:pointer;
+}
+.card h3{margin:0 0 8px}
+.card p{color:#786b72}
+.generator{
+  margin-top:30px;
+  padding:25px;
+  background:white;
+  border-radius:25px;
+  border:2px solid #f3d8e5;
+}
+textarea{
+  width:100%;
+  min-height:110px;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:15px;
+  font-size:16px;
+}
+.generate{
+  margin-top:12px;
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:18px;
+  background:#b83d79;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+.output{
+  margin-top:15px;
+  padding:18px;
+  background:#fff4f9;
+  border-radius:15px;
+  min-height:70px;
+}
+.pro{
+  margin-top:35px;
+  background:#211820;
+  color:white;
+  padding:30px;
+  border-radius:30px;
+}
+.price{
+  color:#ffd56b;
+  font-size:40px;
+  font-weight:bold;
+}
+.pro button{
+  width:100%;
+  padding:17px;
+  background:#ffd56b;
+  border:0;
+  border-radius:20px;
+  font-size:18px;
+  font-weight:bold;
+}
+footer{
+  text-align:center;
+  padding:35px 0;
+  color:#8a7c84;
+}
+@media(max-width:600px){
+  .hero h1{font-size:34px}
+  .tools{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">BeautyBoss <span>AI</span></div>
+<div class="tag">Beauty Business Assistant</div>
+
+<section class="hero">
+<h1>Grow your beauty business faster.</h1>
+<p>Create captions, promotions, client messages and pricing ideas in seconds.</p>
+<button onclick="document.getElementById('creator').scrollIntoView()">
+Create something now
+</button>
+</section>
+
+<h2>AI Tools</h2>
+
+<div class="tools">
+
+<div class="card" onclick="chooseTool('caption')">
+<h3>📱 Caption Writer</h3>
+<p>Instagram & TikTok captions</p>
+</div>
+
+<div class="card" onclick="chooseTool('promo')">
+<h3>💸 Promo Generator</h3>
+<p>Deals that attract clients</p>
+</div>
+
+<div class="card" onclick="chooseTool('reply')">
+<h3>💬 Client Reply</h3>
+<p>Professional message responses</p>
+</div>
+
+<div class="card" onclick="chooseTool('price')">
+<h3>💎 Pricing Helper</h3>
+<p>Ideas for service pricing</p>
+</div>
+
+</div>
+
+<div class="generator" id="creator">
+<h2 id="toolTitle">Create with BeautyBoss AI</h2>
+
+<textarea id="request"
+placeholder="Example: Write an Instagram caption for knotless braids..."></textarea>
+
+<button class="generate" onclick="generateContent()">
+✨ Generate
+</button>
+
+<div class="output" id="output">
+Your BeautyBoss result will appear here.
+</div>
+</div>
+
+<div class="pro">
+<h2>👑 BeautyBoss AI Pro</h2>
+<div class="price">$9.99/month</div>
+
+<p>✓ Unlimited AI generations</p>
+<p>✓ Promo calendar ideas</p>
+<p>✓ Business bios & service descriptions</p>
+<p>✓ Premium marketing tools</p>
+
+<button onclick="alert('BeautyBoss Pro payments coming soon!')">
+Upgrade to Pro
+</button>
+</div>
+
+<footer>
+BeautyBoss AI © 2026
+</footer>
+
+</div>
+
+<script>
+let tool="general";
+
+function chooseTool(type){
+ tool=type;
+
+ const names={
+ caption:"📱 Caption Writer",
+ promo:"💸 Promo Generator",
+ reply:"💬 Client Reply",
+ price:"💎 Pricing Helper"
+ };
+
+ document.getElementById("toolTitle").innerText=names[type];
+ document.getElementById("creator").scrollIntoView({behavior:"smooth"});
+}
+
+function generateContent(){
+
+ const text=document.getElementById("request").value.trim();
+ const output=document.getElementById("output");
+
+ if(!text){
+   output.innerHTML="Please tell BeautyBoss what you need first. 💕";
+   return;
+ }
+
+ if(tool==="caption"){
+   output.innerHTML=
+   "✨ <strong>Caption idea:</strong><br><br>"+
+   "Your next beauty transformation starts here! 💕✨ "+
+   text+
+   "<br><br>📩 Book your appointment today!<br>"+
+   "#BeautyBoss #BeautyBusiness #BookNow";
+ }
+
+ else if(tool==="promo"){
+   output.innerHTML=
+   "💸 <strong>Promotion idea:</strong><br><br>"+
+   "LIMITED-TIME BEAUTY SPECIAL ✨<br>"+
+   text+
+   "<br><br>Encourage clients to book before spots fill up.";
+ }
+
+ else if(tool==="reply"){
+   output.innerHTML=
+   "💬 <strong>Professional reply:</strong><br><br>"+
+   "Hi! Thank you so much for reaching out. 💕 "+
+   "I'd be happy to help you with your appointment. "+
+   "Please send your preferred date and service and I'll confirm availability.";
+ }
+
+ else if(tool==="price"){
+   output.innerHTML=
+   "💎 <strong>Pricing suggestion:</strong><br><br>"+
+   "Consider your product cost, service time, local market prices and desired profit. "+
+   "Offer a standard price plus premium add-ons rather than competing only on low price.";
+ }
+
+ else{
+   output.innerHTML=
+   "✨ BeautyBoss received your request: <strong>"+text+"</strong>";
+ }
+}
+</script>
+
+</body>
+</html>
