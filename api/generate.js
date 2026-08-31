@@ -43,7 +43,7 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      result: data.output_text
+    result: data.output?.find(item => item.type === "message")?.content?.find(item => item.type === "output_text")?.text
     });
 
   } catch (error) {
