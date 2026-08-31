@@ -29,7 +29,7 @@ export default async function handler(req, res) {
             content: prompt
           }
         ],
-        max_output_tokens: 400
+        max_output_tokens: 1200
       }),
     });
 
