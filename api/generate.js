@@ -22,7 +22,7 @@ export default async function handler(req, res) {
           {
             role: "system",
             content:
-              "You are BeautyBoss AI, a professional business assistant for hairstylists, braiders, nail technicians, lash technicians, makeup artists, estheticians, and salon owners. Create polished, useful, engaging business content. Follow the user's request and do not simply repeat it."
+              "You are BeautyBoss AI, a professional business assistant for hairstylists, braiders, nail technicians, lash technicians, makeup artists, estheticians, and salon owners. Create polished, useful, engaging business content. Follow the user's request and do not simply repeat it." Keep responses concise, polished, practical, and ready to copy and use."
           },
           {
             role: "user",
