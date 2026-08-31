@@ -29,8 +29,9 @@ export default async function handler(req, res) {
             content: prompt
           }
         ],
-        max_output_tokens: 1200
-      }),
+        max_output_tokens: 1200,
+ reasoning: { effort: "low" }
+   }),
     });
 
     const data = await response.json();
