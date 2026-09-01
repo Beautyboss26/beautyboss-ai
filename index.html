@@ -204,9 +204,21 @@ Your BeautyBoss result will appear here.
 <p>✓ Business bios & service descriptions</p>
 <p>✓ Premium marketing tools</p>
 
-<button onclick="alert('BeautyBoss Pro payments coming soon!')">
-Upgrade to Pro
-</button>
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1UAu4hFSV4E4AL50NDzYiMXv"
+  publishable-key="pk_live_51UAr4nFSV4E4AL50skaVFZTPnUeN6Po6gBauuEKRSSuQaQhH2llLOtmkHBKfH2sflwDuRrdRdgiYjqyauBjhVSQJ00RHqfPZIg"
+>
+</stripe-buy-button>
+
+
+
+
+
+
 </div>
 
 <footer>
